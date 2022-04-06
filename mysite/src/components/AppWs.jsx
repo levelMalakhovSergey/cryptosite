@@ -9,16 +9,16 @@ const AppWs = () => {
     let tempArr = []
     let portIdArr=[];
     let valuePairsArr=[];
-    const fetchData =  () => {
-        PostService.getSymbols().then(response=> console.log(response))
-        // valuePairsArr= response;
+    const fetchData = async () => {
+        const response = await PostService.getSymbols()
+        setValutePairs(response)
     }
     const fetchSymbolData = async () => {
         const response = await PostService.getSymbolData(arr[0])
         console.log(response)
     }
     useEffect(() => {
-        //fetchData()
+        fetchData()
        // fetchSymbolData()
     }, [])
 
@@ -39,7 +39,8 @@ const AppWs = () => {
                     }
                 }
             }
-        console.log(valuePairsArr)
+        console.log(tempArr)
+
         return tempArr;
     }
 
@@ -66,17 +67,20 @@ const AppWs = () => {
                 tempArr.push({...mess})
             }
             if (Array.isArray(mess[1])) {
+                // console.log(mess)
+
                 portIdArr.push(mess)
                 if (portIdArr.length === 5) {
-                    setValuteData( culcArr())
+                    console.log(portIdArr)
+                    setValuteData([])
+                    setValuteData((previousStateValue) =>  culcArr())
                     portIdArr=[]
                 }
             }
+
         }
 
     }, [])
-    // useEffect(()=> {setState(valuteData)},[valuteData])
-
 // ask: 44307
     // ask_size: 13.313507109999998
     // bid: 44306
