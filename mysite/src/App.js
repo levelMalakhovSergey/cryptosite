@@ -1,10 +1,9 @@
 import AppWs from "./components/AppWs";
-
+import React from "react";
 
 function App() {
   return (
     <div className="App">
-sadas
         <AppWs/>
     </div>
   );
