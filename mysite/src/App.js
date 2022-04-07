@@ -6,7 +6,7 @@ import AppRouter from "./components/AppRouter";
 import Navbar from "./components/UI/Navbar";
 function App() {
     const [isAuth,setIsAuth] = useState(false)
-    const [gettingArrLength,setGettingArrLength] = useState(5)
+    const [gettingArrLength,setGettingArrLength] = useState(7)
     useEffect(() => {
         if (localStorage.getItem('auth'))
         {

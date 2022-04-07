@@ -79,7 +79,7 @@ const AppWs = () => {
                 }
             }
         }
-    }, [valutePairs])
+    }, [valutePairs,gettingArrLength])
 
 
     function onChange(pagination, filters, sorter, extra) {
