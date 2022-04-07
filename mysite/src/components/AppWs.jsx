@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import '../styles/App.css';
 import {Table} from 'antd';
 import PostService from "../api/PostService";
+import {columns} from "../utils/columns";
 const AppWs = () => {
     const [valutePairs, setValutePairs] = useState([])
     const [valuteData, setValuteData] = useState([])
@@ -40,7 +41,6 @@ const AppWs = () => {
                 }
             }
         console.log(tempArr)
-
         return tempArr;
     }
 
@@ -56,8 +56,8 @@ const AppWs = () => {
             })
             socket.send(msg)
         }
-    };  // callback на ивент открытия соединения
-    socket.onclose = () => console.log('Port closed'); // callback на ивент закрытия соединения
+    };
+    socket.onclose = () => console.log('Port closed');
 
     useEffect(() => {
 
@@ -79,76 +79,15 @@ const AppWs = () => {
             }
 
         }
-
     }, [])
-// ask: 44307
-    // ask_size: 13.313507109999998
-    // bid: 44306
-    // bid_size: 16.148645730000002
-    // chanId: 474504
-    // channel: "ticker"
-    // daily_change: -2167
-    // daily_change_relative: -0.0467
-    // event: "subscribed"
-    // high: 46452
-    // last_price: 44285
-    // low: 44122
-    // pair: "BTCUSD"
-    // symbol: "tBTCUSD"
-    // volume: 3651.36703943
-    const columns = [
-        {
-            title: 'Symbols',
-            dataIndex: 'pair',
-            sorter: (a, b) => a.pair.length - b.pair.length,
-            sortDirections: ['descend'],
-        },
-        {
-            title: 'Last price',
-            dataIndex: 'last_price',
-            defaultSortOrder: 'descend',
-            sorter: (a, b) => a.last_price - b.last_price,
-        },
-        {
-            title: 'Daily Change',
-            dataIndex: 'daily_change',
-            defaultSortOrder: 'descend',
-            sorter: (a, b) => a.daily_change - b.daily_change
-        },
-        {
-            title: 'Daily Change Percent',
-            dataIndex: 'daily_change_relative',
-            defaultSortOrder: 'descend',
-            sorter: (a, b) => a.daily_change_relative - b.daily_change_relative,
-        },
-        {
-            title: 'Daily high',
-            dataIndex: 'high',
-            defaultSortOrder: 'descend',
-            sorter: (a, b) => a.high - b.high,
-        },
-        {
-            title: 'Daily low',
-            dataIndex: 'low',
-            defaultSortOrder: 'descend',
-            sorter: (a, b) => a.low - b.low,
-        },
-        {
-            title: 'Volume',
-            dataIndex: 'volume',
-            defaultSortOrder: 'descend',
-            sorter: (a, b) => a.volume - b.volume,
-        },
-    ];
+
 
     function onChange(pagination, filters, sorter, extra) {
        // console.log('params', pagination, filters, sorter, extra);
     }
-
     return (
-
         <div>
-           <Table columns={columns} dataSource={valuteData} onChange={onChange} />
+           <Table  columns={columns} dataSource={valuteData} onChange={onChange} />
         </div>
     )
 }
