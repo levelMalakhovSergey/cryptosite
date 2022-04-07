@@ -2,10 +2,10 @@ import axios from "axios";
 
 export default class PostService
 {
-    static async getSymbols( )
+    static async getSymbols(length)
     {
         const response=  await axios.get('/symbols')
-        return response.data.slice(0,5)
+        return response.data.slice(0,length)
     }
     static async getSymbolData(name)
     {
