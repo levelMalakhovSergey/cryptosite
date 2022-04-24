@@ -10,16 +10,10 @@ import {getValutePairs, setData} from "../redux/Actions/actionCreator";
 import {GET_VALUTE_PAIRS} from "../redux/constants";
 
 const AppWs = () => {
-    const [symbolsLoaded, setSymbolLoaded] = useState(false);
-    const [valutePairs, setValutePairs] = useState([])
-    const [valuteData, setValuteData] = useState([])
-    const [state, setState] = useState(null)
-    const {gettingArrLength,setGettingArrLength} = useContext(AuthContext)
     const store = useSelector(store => store?.data)
     const dispatch = useDispatch()
     let tempArr = []
     let portIdArr = [];
-    let valuePairsArr = [];
 
     // const fetchData = async () => {
     //     const response = await PostService.getSymbols(gettingArrLength)
@@ -64,11 +58,8 @@ const AppWs = () => {
             }
             if (Array.isArray(mess[1])) {
                 portIdArr.push(mess)
-                if (portIdArr.length === gettingArrLength) {
-                    console.log(portIdArr)
-                    setValuteData([])
+                if (portIdArr.length === store.valutePairsLength) {
                     dispatch(setData(culcArr()))
-                    // setValuteData(culcArr())
                     portIdArr = []
                 }
             }

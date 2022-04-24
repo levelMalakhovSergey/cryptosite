@@ -4,22 +4,22 @@ import {AuthContext} from "./context";
 import {BrowserRouter} from "react-router-dom";
 import AppRouter from "./components/AppRouter";
 import Navbar from "./components/UI/Navbar";
+import {useDispatch} from "react-redux";
+import {setAuth} from "./redux/Actions/actionCreator";
 function App() {
-    const [isAuth,setIsAuth] = useState(false)
     const [gettingArrLength,setGettingArrLength] = useState(7)
+    const dispatch = useDispatch()
     useEffect(() => {
         if (localStorage.getItem('auth'))
         {
-            setIsAuth(true)
+            dispatch(setAuth(true))
         }
     },[])
   return (
-      <AuthContext.Provider  value={{isAuth, setIsAuth,gettingArrLength,setGettingArrLength}}>
           <BrowserRouter>
               <Navbar/>
               <AppRouter/>
           </BrowserRouter>
-      </AuthContext.Provider>
   );
 }
 

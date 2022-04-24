@@ -1,9 +1,10 @@
 
 import React, {useContext} from 'react';
-import {AuthContext} from "../context";
 import GoogleLogin from "react-google-login";
 import {refreshTokenSetup} from "../utils/refreshTokenSetup";
 import {Navigate, useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {setAuth} from "../redux/Actions/actionCreator";
 
 
 
@@ -11,18 +12,17 @@ const clientId = "672938067510-hqkcsj6nllovs9c8l4m31lq38jm5fbl2.apps.googleuserc
 
 const Login = () => {
     const navigate = useNavigate()
+    const dispatch =useDispatch()
     const onSuccess = (res) => {
         console.log("current User  " + res)
-        setIsAuth(true)
+        dispatch(setAuth(true))
         localStorage.setItem('auth', 'true')
         refreshTokenSetup(res)
         navigate("/table", { replace: true })
     }
     const onFailure = (res) => {
-
         console.log("Failure " + res)
     }
-    const {setIsAuth} = useContext(AuthContext)
     return (
 
         <div style={{width: "800px", margin: "0 auto"}}>

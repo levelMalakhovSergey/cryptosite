@@ -2,13 +2,16 @@ import React, {useContext} from 'react';
 import {useNavigate} from "react-router-dom";
 import {Button} from "antd";
 import MyuseLogoutHook from "../../hooks/MyuseLogoutHook";
-import {AuthContext} from "../../context";
+import {useDispatch, useSelector} from "react-redux";
+import {setAuth} from "../../redux/Actions/actionCreator";
+
 
 const Navbar = () => {
-    const {isAuth, setIsAuth} = useContext(AuthContext)
+    const auth = useSelector(store=> store.auth)
+    const dispatch = useDispatch()
     let navigate = useNavigate()
     const logout = () => {
-    setIsAuth(false)
+    dispatch(setAuth(false))
         if (localStorage.getItem('auth'))
         {
             localStorage.removeItem('auth')
@@ -16,7 +19,7 @@ const Navbar = () => {
     }
     return (
 
-            isAuth &&
+            auth.isAuth &&
                 <div className="navbar">
                 <Button onClick={() => logout()}>Exit Account</Button>
                 <MyuseLogoutHook/>

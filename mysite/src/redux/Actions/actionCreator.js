@@ -1,4 +1,4 @@
-import {GET_VALUTE_PAIRS, SET_DATA, SET_VALUTE_PAIRS} from "../constants";
+import {GET_VALUTE_PAIRS, SET_AUTH, SET_DATA, SET_VALUTE_PAIRS, SET_VALUTE_PAIRS_LENGTH} from "../constants";
 
 
 export const setData = (payload)=>(
@@ -13,5 +13,15 @@ export const getValutePairs = ()=>(
 export const setValutePairs = (payload)=>(
     {
         type: SET_VALUTE_PAIRS,
+        payload
+    })
+export const setAuth = (payload)=>(
+    {
+        type:SET_AUTH,
+        payload
+    })
+export const setValutePairsLenght = (payload)=>(
+    {
+        type:SET_VALUTE_PAIRS_LENGTH,
         payload
     })

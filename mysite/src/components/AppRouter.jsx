@@ -3,16 +3,15 @@ import {AuthContext} from "../context";
 import Table from "../pages/Table";
 import Login from "../pages/Login";
 import {Routes, Route, Navigate } from "react-router-dom";
-import App from "../App";
-import AppWs from "./AppWs";
+import {useSelector} from "react-redux";
 
 const AppRouter = () => {
-    const {isAuth} = useContext(AuthContext)
+    const auth = useSelector(store => store.auth)
 
     return (
     <Routes>
 
-        {isAuth}? <Route path='/table' element={<Table/>}/>
+        {auth.isAuth}? <Route path='/table' element={<Table/>}/>
                 : <Route path="/login" element={<Login/>}/>
                     <Route path="/" element={<Login/>}/>
 

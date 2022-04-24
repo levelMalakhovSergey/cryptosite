@@ -1,3 +1,5 @@
 export  const SET_DATA = 'SET_DATA'
 export  const SET_VALUTE_PAIRS = 'SET_VALUTE_PAIRS'
 export  const GET_VALUTE_PAIRS = 'GET_VALUTE_PAIRS'
+export  const SET_AUTH = 'SET_AUTH'
+export  const SET_VALUTE_PAIRS_LENGTH = 'SET_VALUTE_PAIRS_LENGTH'
