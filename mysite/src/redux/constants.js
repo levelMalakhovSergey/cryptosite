@@ -1,0 +1,3 @@
+export  const SET_DATA = 'SET_DATA'
+export  const SET_VALUTE_PAIRS = 'SET_VALUTE_PAIRS'
+export  const GET_VALUTE_PAIRS = 'GET_VALUTE_PAIRS'
